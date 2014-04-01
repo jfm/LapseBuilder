@@ -1,4 +1,12 @@
 LapseBuilder
 ============
 
-Python Helper Application for building TimeLapse videos using ImageMagick and FFMPEG
+Python Application for building TimeLapse videos using ImageMagick and FFMPEG
+
+#Installation
+
+##Download
+
+##Dependencies
+
+#Usage
