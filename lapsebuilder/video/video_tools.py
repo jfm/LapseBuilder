@@ -3,7 +3,7 @@ from system import project_configuration as ProjectConfig
 
 class VideoTools:
 
-    def render_video(self, config):
+    def render_video(self):
         #Obtain Environment
         target_folder = ProjectConfig.get('Locations', 'target_folder')
         

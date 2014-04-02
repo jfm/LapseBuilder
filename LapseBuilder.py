@@ -9,8 +9,17 @@ from video.video_tools import VideoTools
 def convert_images(filenames):
     image_tools = ImageTools()
     
+    #Obtain Environment
+    source_folder = ProjectConfig.get('Locations', 'source_folder')
+    target_folder = ProjectConfig.get('Locations', 'target_folder')
+
+    #Obtain Target Resolution
+    target_width = ProjectConfig.get('ImageConversion', 'resolution_width')
+    target_height = ProjectConfig.get('ImageConversion', 'resolution_height')
+    
     for index, filename in enumerate(filenames):
-        image_tools.resize_image(filename, index)
+        file_path = source_folder + '/' + filename
+        image_tools.resize_image(target_width, target_height, file_path, index, target_folder)
 
 def render_video():
     video_tools = VideoTools()
@@ -36,6 +45,6 @@ if  __name__ =='__main__':
         convert_images(source_files)
         
         #Render Video
-        render_video(config)
+        render_video()
 
 
