@@ -1,21 +1,26 @@
 from video_executor import FFMpegExecutor
-from system import project_configuration as ProjectConfig
+from system import project_configuration as project_config
+
 
 class VideoTools:
 
-    def render_video(self):
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def render_video():
         #Obtain Environment
-        target_folder = ProjectConfig.get('Locations', 'target_folder')
+        target_folder = project_config.get('Locations', 'target_folder')
         
         #Obtain Video Conversion Properties
-        framerate = ProjectConfig.get('VideoConversion', 'framerate')
-        video_codec = ProjectConfig.get('VideoConversion', 'video_codec')
-        crf = ProjectConfig.get('VideoConversion', 'crf')
-        preset = ProjectConfig.get('VideoConversion', 'preset')
-        output_file = ProjectConfig.get('VideoConversion', 'output_file')
+        framerate = project_config.get('VideoConversion', 'framerate')
+        video_codec = project_config.get('VideoConversion', 'video_codec')
+        crf = project_config.get('VideoConversion', 'crf')
+        preset = project_config.get('VideoConversion', 'preset')
+        output_file = project_config.get('VideoConversion', 'output_file')
         
         #Execute Rendering
-        arguments = []
+        arguments = list()
         arguments.append('-pattern_type')
         arguments.append('glob')
         arguments.append('-i')

@@ -1,8 +1,13 @@
 from os import listdir
 
+
 class FileTools():
 
-    def get_source_file_list(self, source_folder):
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def get_source_file_list(source_folder):
         result_list = []
         full_list = listdir(source_folder)
         for listitem in full_list:
