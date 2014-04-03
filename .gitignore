@@ -39,6 +39,7 @@ coverage.xml
 
 # IDE Files
 .idea
+requirements.txt
 
 # Sphinx documentation
 docs/_build/
