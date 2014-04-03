@@ -4,7 +4,7 @@ import sys
 sys.path.append('lapsebuilder')
 
 setup(name='lapsebuilder',
-      version='1.0',
+      version='0.1',
       author='Jesper Fussing Moerk',
       author_email='jfm@moerks.dk',
       url='https://github.com/jfm/LapseBuilder/',
