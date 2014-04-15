@@ -30,6 +30,13 @@ class SettingsFrame(Gtk.Frame):
         target_folder_button.connect("clicked", self.on_target_folder_button_clicked)
         widget_grid.attach_next_to(target_folder_button, target_folder_entry, Gtk.PositionType.RIGHT, 1, 1)
 
+        #Target Movie File
+        file_label = Gtk.Label('Target Filename')
+        file_label.set_alignment(0.02, 0.5)
+        widget_grid.attach_next_to(file_label, target_folder_entry, Gtk.PositionType.BOTTOM, 2, 1)
+        file_entry = Gtk.Entry()
+        widget_grid.attach_next_to(file_entry, file_label, Gtk.PositionType.BOTTOM, 2, 1)
+
         self.add(widget_grid)
 
     def on_source_folder_button_clicked(self):
