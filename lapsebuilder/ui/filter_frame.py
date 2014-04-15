@@ -59,6 +59,16 @@ class FilterFrame(Gtk.Frame):
         widget_grid.attach_next_to(resolution_x_label, FilterFrame.resolution_width_entry, Gtk.PositionType.RIGHT, 1, 1)
         widget_grid.attach_next_to(FilterFrame.resolution_height_entry, resolution_x_label, Gtk.PositionType.RIGHT, 1, 1)
 
+        #Deflicker Selection
+        deflicker_label = Gtk.Label('Deflicker')
+        deflicker_label.set_alignment(0.02, 0.5)
+        widget_grid.attach_next_to(deflicker_label, FilterFrame.resolution_width_entry, Gtk.PositionType.BOTTOM, 2, 1)
+        deflicker_switch = Gtk.Switch()
+        deflicker_switch.set_active(False)
+        deflicker_switch.set_hexpand(False)
+        deflicker_switch.set_vexpand(False)
+        widget_grid.attach_next_to(deflicker_switch, deflicker_label, Gtk.PositionType.RIGHT, 1, 1)
+
         v_separator = Gtk.VSeparator()
         widget_grid.attach_next_to(v_separator, gravity_label, Gtk.PositionType.RIGHT, 1, 5)
 
