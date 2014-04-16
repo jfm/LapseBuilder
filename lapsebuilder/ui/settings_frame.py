@@ -50,10 +50,9 @@ class SettingsFrame(Gtk.Frame):
             SettingsFrame.source_folder_entry.set_text(source_folder_path)
             source_file_list = FileTools.get_source_file_list(source_folder_path)
             ImageFrame.load_image(source_file_list[0])
+            source_file_dialog.destroy()
         elif response == Gtk.ResponseType.CANCEL:
-            pass
-
-        source_file_dialog.destroy()
+            source_file_dialog.destroy()
 
     def on_target_folder_button_clicked(self, button):
         target_file_dialog = Gtk.FileChooserDialog('Select Source Folder', Gtk.Window(), Gtk.FileChooserAction.SELECT_FOLDER, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, "Select", Gtk.ResponseType.OK))
@@ -61,7 +60,6 @@ class SettingsFrame(Gtk.Frame):
 
         if response == Gtk.ResponseType.OK:
             SettingsFrame.target_folder_entry.set_text(target_file_dialog.get_filename())
+            target_file_dialog.destroy()
         elif response == Gtk.ResponseType.CANCEL:
-            pass
-
-        target_file_dialog.destroy()
+            target_file_dialog.destroy()
