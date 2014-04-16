@@ -1,5 +1,6 @@
 from gi.repository import Gtk
 from ui.crop_widget import CropWidget
+from image.image_tools import ImageTools
 
 
 class ImageFrame(Gtk.Frame):
@@ -15,9 +16,9 @@ class ImageFrame(Gtk.Frame):
         widget_grid.props.halign = Gtk.Align.CENTER
         widget_grid.add(ImageFrame.crop_widget)
 
-
         self.add(widget_grid)
 
     @staticmethod
     def load_image(file_path):
-        ImageFrame.crop_widget.set_image(file_path)
+        image = ImageTools.manipulate_frame(file_path, False, False)
+        ImageFrame.crop_widget.set_image(image)

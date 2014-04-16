@@ -1,4 +1,5 @@
-from wand.image import Image
+from PIL import Image, ImageEnhance
+from image.deflicker import Deflicker
 
 
 class ImageTools:
@@ -6,12 +7,30 @@ class ImageTools:
     def __init__(self):
         pass
 
-    @staticmethod
-    def resize_image(width, height, file_path, index, target_folder):
-        target_path = target_folder + '/frame_' + ("%05d" % index) + '.jpg'
+    def manipulate_frame(self, frame, deflicker, resize, **kwargs):
+        image = Image.open(frame)
+        temp_image = image.copy()
 
-        with Image(filename=file_path) as image:
-            with image.clone() as image_clone:
-                image_clone.transform(resize=str(width) + 'x')
-                image_clone.transform(crop=str(width) + 'x' + str(height) + '+0+0')
-                image_clone.save(filename=target_path)
+        if deflicker:
+            temp_image = self.deflicker(temp_image, kwargs['average_luminance'])
+
+        if resize:
+            temp_image = self.resize_image(kwargs['width'], kwargs['height'], temp_image)
+
+        return temp_image
+
+    def manipulate_frames(self, frames, deflicker, resize, **kwargs):
+        average_luminance = Deflicker.calculate_average_luminance(frames)
+
+        for index, frame in frames:
+            temp_image = self.manipulate_frame(frame, deflicker, resize, kwargs, average_luminance=average_luminance)
+            temp_image.save(kwargs['target_folder'] + '/frame_' + ("%05d" % index) + '.jpg')
+
+    def resize_image(self, width, height, temp_image):
+        return temp_image.thumbnail((width, height), Image.ANTIALIAS)
+
+    def deflicker(self, temp_image, average_luminance):
+        image_luminance = Deflicker.calculate_luminance(temp_image)
+        brightness = 1 / (image_luminance / average_luminance)
+        enhancer = ImageEnhance.Brightness(temp_image)
+        return enhancer.enhance(brightness)
