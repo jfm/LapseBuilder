@@ -10,7 +10,7 @@ class LapseBuilderWindow(Gtk.Window):
         Gtk.Window.__init__(self, title="LapseBuilder")
 
         #Settings
-        self.set_default_size(1000, 800)
+        self.set_default_size(1000, 700)
 
         #Create and manipulate Grid Layout
         grid = Gtk.Grid()

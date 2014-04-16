@@ -12,6 +12,6 @@ class FileTools():
         full_list = listdir(source_folder)
         for listitem in full_list:
             if listitem.lower().endswith('.jpg'):
-                result_list.append(listitem)
+                result_list.append(source_folder + '/' + listitem)
                 
         return sorted(result_list)
